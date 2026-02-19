@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<Object> handleProductNotFoundException(ProductNotFoundException ex) {
+    @ExceptionHandler(AccountNotFoundException.class)
+    public ResponseEntity<Object> handleProductNotFoundException(AccountNotFoundException ex) {
         return new ResponseEntity<>(new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage()), HttpStatus.NOT_FOUND);
     }
     @Getter

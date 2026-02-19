@@ -7,7 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ProductDto {
+public class AccountDto {
     private Long id;
     private int code;
     private String message;
