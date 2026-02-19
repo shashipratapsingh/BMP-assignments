@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/consumer/products")
+@RequestMapping("/transactions/accounts")
 public class TransactionController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class TransactionController {
 
     @GetMapping
     @Operation(summary = "Get all products")
-    @ApiResponse(responseCode = "200", description = "List of all products")
+    @ApiResponse(responseCode = "200", description = "List of all Account")
     @ApiResponse(responseCode = "500", description = "Internal Server Error")
     public ResponseEntity<?> getAllProducts() {
         try {
@@ -37,16 +37,16 @@ public class TransactionController {
             return ResponseEntity.ok(accounts);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Failed to fetch products. Please try again later.");
+                    .body("Failed to fetch Account. Please try again later.");
         }
     }
 
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get product by ID")
+    @Operation(summary = "Get Account by ID")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Product found"),
-            @ApiResponse(responseCode = "404", description = "Product not found"),
+            @ApiResponse(responseCode = "200", description = "Account found"),
+            @ApiResponse(responseCode = "404", description = "Account not found"),
             @ApiResponse(responseCode = "500", description = "Internal Server Error")
     })
     public ResponseEntity<?> getProductById(@PathVariable Long id) {
@@ -54,33 +54,33 @@ public class TransactionController {
             Account account = accountClient.getProductById(id);
             return account != null
                     ? ResponseEntity.ok(account)
-                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found with ID: " + id);
+                    : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account not found with ID: " + id);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An error occurred while fetching the product. Please try again later.");
+                    .body("An error occurred while fetching the Account. Please try again later.");
         }
     }
 
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update a product")
+    @Operation(summary = "Update a Account")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Product updated successfully"),
-            @ApiResponse(responseCode = "404", description = "Product not found"),
+            @ApiResponse(responseCode = "200", description = "Account updated successfully"),
+            @ApiResponse(responseCode = "404", description = "Account not found"),
             @ApiResponse(responseCode = "400", description = "Invalid request body")
     })
     public ResponseEntity<Account> updateProduct(@PathVariable Long id, @Valid @RequestBody Account account) {
-        Account updatedAccount = accountClient.updateProduct(id, account); // This throws ProductNotFoundException if not found
+        Account updatedAccount = accountClient.updateProduct(id, account); // This throws AccountNotFoundException if not found
         return ResponseEntity.ok(updatedAccount);
     }
 
 
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete a product")
+    @Operation(summary = "Delete a Account")
     @ApiResponses({
-            @ApiResponse(responseCode = "204", description = "Product deleted successfully"),
-            @ApiResponse(responseCode = "404", description = "Product not found")
+            @ApiResponse(responseCode = "204", description = "Account deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Account not found")
     })
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         accountClient.deleteProduct(id);

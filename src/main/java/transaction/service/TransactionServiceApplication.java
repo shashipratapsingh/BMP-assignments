@@ -10,7 +10,7 @@ public class TransactionServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TransactionServiceApplication.class, args);
-		System.out.println("consumer service is running...");
+		System.out.println("Transaction service is running...");
 	}
 
 }

@@ -15,7 +15,7 @@ public class Account {
 
     private Long id;
 
-    @NotEmpty(message = "Product name cannot be empty")
+    @NotEmpty(message = "Account name cannot be empty")
     private String name;
 
     private double price;
