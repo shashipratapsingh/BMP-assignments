@@ -11,19 +11,24 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "accounts")
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    @Column(name = "account_number", unique = true, length = 10)
+    private String accountNumber;
+
     @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private double price;
-    @Column(nullable = false)
-    private int quantity;
-    @Column(nullable = false)
-    private String description;
+    private Double balance = 1000.00;
+
+    @Column(name = "account_type")
+    private String accountType = "SAVINGS";
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

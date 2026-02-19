@@ -11,52 +11,41 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountRepository accountRepository;
 
+    @Autowired
+    private AccountNumberGenerator generator;
 
     @Override
     public Account createAccount(Account account) {
-        return accountRepository.save(account);
+
+        try {
+            String accNumber;
+            do {
+                accNumber = generator.generateAccountNumber();
+            } while (accountRepository.existsByAccountNumber(accNumber));
+
+            account.setAccountNumber(accNumber);
+            account.setBalance(1000.00);
+
+            return accountRepository.save(account);
+
+        } catch (Exception ex) {
+            throw new RuntimeException("Unable to create account");
+        }
     }
 
-    public List<Account> getAllAccount() {
-        List<Account> productList= accountRepository.findAll();
-        if (productList.isEmpty()) {
-            throw new AccountNotFoundException("No Account found");
+    @Override
+    public List<Account> getAccountsByUserId(Long userId) {
+        List<Account> accounts = accountRepository.findByUserId(userId);
+        if (accounts.isEmpty()) {
+            throw new AccountNotFoundException(
+                    "No accounts found for userId : " + userId);
         }
-        return productList;
-    }
-    public Optional<Account> getAccountById(Long id) {
-        return Optional.ofNullable(accountRepository.findById(id).orElseThrow(() -> new AccountNotFoundException("Account with ID " + id + " not Found")));
-    }
-
-    @Transactional
-    public Account updateAccount(Long id, Account account) {
-        Account existingProduct = accountRepository.findById(id)
-                .orElseThrow(() -> new AccountNotFoundException("Account with ID " + id + " not found"));
-        account.setId(existingProduct.getId());
-        return accountRepository.save(account);
-    }
-    @Transactional
-    public void updateMultipleAccount(List<Account> accounts) {
-        for (Account account1 : accounts) {
-            if (!accountRepository.existsById(account1.getId())) {
-                throw new IllegalArgumentException(
-                        "Account with ID " + account1.getId() + " does not exist");
-            }
-            accountRepository.save(account1);
-        }
-    }
-    @Transactional
-    public boolean deleteAccount(Long id) {
-        if (accountRepository.existsById(id)) {
-            accountRepository.deleteById(id);
-            return true;
-        }else {
-            throw new AccountNotFoundException("Account with ID " + id + " does not exist");
-        }
+        return accounts;
     }
 }

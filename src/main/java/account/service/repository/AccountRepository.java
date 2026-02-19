@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    @Query("SELECT p FROM Account p WHERE p.price < ?1")
-    List<Account> findByPriceLessThan(double price);
+    boolean existsByAccountNumber(String accountNumber);
+    List<Account> findByUserId(Long userId);
 }
