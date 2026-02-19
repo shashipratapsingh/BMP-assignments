@@ -15,14 +15,14 @@ public interface AccountClient {
     Account createProduct(@RequestBody Account account);
 
     @GetMapping
-    List<Account> getAllProducts();
+    List<Account> getAllAccount();
 
     @GetMapping("/{id}")
-    Account getProductById(@PathVariable("id") Long id);
+    Account getAccountById(@PathVariable("id") Long id);
 
     @PutMapping("/{id}")
-    Account updateProduct(@PathVariable("id") Long id, @RequestBody Account account);
+    Account updateAccount(@PathVariable("id") Long id, @RequestBody Account account);
 
     @DeleteMapping("/{id}")
-    void deleteProduct(@PathVariable("id") Long id);
+    void deleteAccount(@PathVariable("id") Long id);
 }

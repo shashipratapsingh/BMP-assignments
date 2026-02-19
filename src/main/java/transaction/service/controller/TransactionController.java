@@ -31,9 +31,9 @@ public class TransactionController {
     @Operation(summary = "Get all products")
     @ApiResponse(responseCode = "200", description = "List of all Account")
     @ApiResponse(responseCode = "500", description = "Internal Server Error")
-    public ResponseEntity<?> getAllProducts() {
+    public ResponseEntity<?> getAllAccount() {
         try {
-            List<Account> accounts = accountClient.getAllProducts();
+            List<Account> accounts = accountClient.getAllAccount();
             return ResponseEntity.ok(accounts);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -51,7 +51,7 @@ public class TransactionController {
     })
     public ResponseEntity<?> getProductById(@PathVariable Long id) {
         try {
-            Account account = accountClient.getProductById(id);
+            Account account = accountClient.getAccountById(id);
             return account != null
                     ? ResponseEntity.ok(account)
                     : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account not found with ID: " + id);
@@ -70,7 +70,7 @@ public class TransactionController {
             @ApiResponse(responseCode = "400", description = "Invalid request body")
     })
     public ResponseEntity<Account> updateProduct(@PathVariable Long id, @Valid @RequestBody Account account) {
-        Account updatedAccount = accountClient.updateProduct(id, account); // This throws AccountNotFoundException if not found
+        Account updatedAccount = accountClient.updateAccount(id, account); // This throws AccountNotFoundException if not found
         return ResponseEntity.ok(updatedAccount);
     }
 
@@ -83,7 +83,7 @@ public class TransactionController {
             @ApiResponse(responseCode = "404", description = "Account not found")
     })
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        accountClient.deleteProduct(id);
+        accountClient.deleteAccount(id);
         return ResponseEntity.noContent().build();
     }
 
