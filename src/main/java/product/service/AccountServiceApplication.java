@@ -6,11 +6,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients
-public class ProductServiceApplication {
+public class AccountServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProductServiceApplication.class, args);
-		System.out.println("Product service have started..");
+		SpringApplication.run(AccountServiceApplication.class, args);
+		System.out.println("Account service have started..");
 	}
 
 }
