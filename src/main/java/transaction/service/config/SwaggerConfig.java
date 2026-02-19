@@ -1,4 +1,4 @@
-package consumer.service.config;
+package transaction.service.config;
 
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
@@ -23,9 +23,9 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Product Service API")
+                        .title("Transaction Service API")
                         .version("1.0")
-                        .description("API documentation for Product Service")
+                        .description("API documentation for Transaction Service")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")));
     }//http://localhost:8082/swagger-ui.html
 }

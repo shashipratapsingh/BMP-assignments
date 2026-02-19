@@ -1,4 +1,4 @@
-package consumer.service.entity;
+package transaction.service.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Product {
+public class Account {
 
     private Long id;
 

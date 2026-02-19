@@ -1,7 +1,7 @@
-package consumer.service.controller;
+package transaction.service.controller;
 
 
-import consumer.service.entity.Product;
+import transaction.service.entity.Account;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -15,16 +15,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/consumer/products")
-public class ConsumerController {
+public class TransactionController {
 
     @Autowired
-    private ProductClient productClient;
+    private AccountClient accountClient;
 
     @GetMapping("/healthCheck")
-    @Operation(summary = "Check Health of Product Service")
+    @Operation(summary = "Check Health of Account Service")
     @ApiResponse(responseCode = "200", description = "Service is working fine")
     public String healthCheck() {
-        return "Consumer service working fine";
+        return "Transaction service working fine";
     }
 
     @GetMapping
@@ -33,8 +33,8 @@ public class ConsumerController {
     @ApiResponse(responseCode = "500", description = "Internal Server Error")
     public ResponseEntity<?> getAllProducts() {
         try {
-            List<Product> products = productClient.getAllProducts();
-            return ResponseEntity.ok(products);
+            List<Account> accounts = accountClient.getAllProducts();
+            return ResponseEntity.ok(accounts);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Failed to fetch products. Please try again later.");
@@ -51,9 +51,9 @@ public class ConsumerController {
     })
     public ResponseEntity<?> getProductById(@PathVariable Long id) {
         try {
-            Product product = productClient.getProductById(id);
-            return product != null
-                    ? ResponseEntity.ok(product)
+            Account account = accountClient.getProductById(id);
+            return account != null
+                    ? ResponseEntity.ok(account)
                     : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found with ID: " + id);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -69,9 +69,9 @@ public class ConsumerController {
             @ApiResponse(responseCode = "404", description = "Product not found"),
             @ApiResponse(responseCode = "400", description = "Invalid request body")
     })
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody Product product) {
-        Product updatedProduct = productClient.updateProduct(id, product); // This throws ProductNotFoundException if not found
-        return ResponseEntity.ok(updatedProduct);
+    public ResponseEntity<Account> updateProduct(@PathVariable Long id, @Valid @RequestBody Account account) {
+        Account updatedAccount = accountClient.updateProduct(id, account); // This throws ProductNotFoundException if not found
+        return ResponseEntity.ok(updatedAccount);
     }
 
 
@@ -83,7 +83,7 @@ public class ConsumerController {
             @ApiResponse(responseCode = "404", description = "Product not found")
     })
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        productClient.deleteProduct(id);
+        accountClient.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
 
