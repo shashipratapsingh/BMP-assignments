@@ -1,4 +1,4 @@
-package product.service.entity;
+package account.service.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,4 +1,4 @@
-package product.service.controller;
+package account.service.controller;
 
 
 
@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import product.service.dto.ErrorResponse;
-import product.service.dto.ProductDto;
-import product.service.entity.Product;
-import product.service.exception.ProductNotFoundException;
-import product.service.service.ProductService;
+import account.service.dto.ErrorResponse;
+import account.service.dto.ProductDto;
+import account.service.entity.Product;
+import account.service.exception.ProductNotFoundException;
+import account.service.service.ProductService;
 import java.util.List;
 @RestController
 @RequestMapping("/products")

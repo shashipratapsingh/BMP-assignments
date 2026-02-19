@@ -1,8 +1,8 @@
-package product.service.repository;
+package account.service.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import product.service.entity.Product;
+import account.service.entity.Product;
 
 import java.util.List;
 

@@ -1,12 +1,12 @@
-package product.service.service.impl;
+package account.service.service.impl;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import product.service.entity.Product;
-import product.service.exception.ProductNotFoundException;
-import product.service.repository.ProductRepository;
-import product.service.service.ProductService;
+import account.service.entity.Product;
+import account.service.exception.ProductNotFoundException;
+import account.service.repository.ProductRepository;
+import account.service.service.ProductService;
 
 import java.util.List;
 import java.util.Optional;

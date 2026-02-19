@@ -1,6 +1,6 @@
-package product.service.service;
+package account.service.service;
 
-import product.service.entity.Product;
+import account.service.entity.Product;
 import java.util.List;
 import java.util.Optional;
 

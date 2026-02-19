@@ -1,4 +1,4 @@
-package product.service.exception;
+package account.service.exception;
 
 public class ProductNotFoundException extends RuntimeException{
     public ProductNotFoundException(String message){
