@@ -1,0 +1,5 @@
+API\Gateway\config\JwtUtil.class
+API\Gateway\filter\AuthenticationFilter.class
+API\Gateway\filter\AuthenticationFilter$Config.class
+API\Gateway\filter\RouteValidator.class
+API\Gateway\ApiGatewayApplication.class
