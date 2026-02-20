@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/accounts")
+@RequestMapping("/api/accounts")
 public class AccountController {
 
     @Autowired
@@ -52,7 +52,7 @@ public class AccountController {
             return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/api/accounts/user/{userId}")
+    @GetMapping("/user/{userId}")
     @Operation(summary = "View all accounts of a user")
     @ApiResponse(responseCode = "200", description = "Accounts fetched successfully")
     public ResponseEntity<List<AccountViewDto>> getAccountsByUser(
