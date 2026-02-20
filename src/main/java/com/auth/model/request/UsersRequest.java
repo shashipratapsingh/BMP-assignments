@@ -10,8 +10,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-@Getter
-@Setter
 public class UsersRequest {
 
     @NotNull(message = "name can not be null")
@@ -25,8 +23,13 @@ public class UsersRequest {
     @NotEmpty(message = "password can not be empty")
     private String password;
 
+    @NotNull(message = "phone can not be null")
+    @NotBlank(message = "phone can not be blank")
+    @NotEmpty(message = "phone can not be empty")
+    private String phone;
+
     @NotNull(message = "roles can not be null")
-    private Roles roles=Roles.PRODUCER;
+    private Roles roles=Roles.USER;
 
     public @NotNull(message = "name can not be null") String getName() {
         return name;
@@ -52,11 +55,20 @@ public class UsersRequest {
         this.password = password;
     }
 
+
     public @NotNull(message = "roles can not be null") Roles getRoles() {
         return roles;
     }
 
     public void setRoles(@NotNull(message = "roles can not be null") Roles roles) {
         this.roles = roles;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
